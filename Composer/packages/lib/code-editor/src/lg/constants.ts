@@ -6,13 +6,13 @@ export const activityTemplateType = 'Activity';
 export const jsLgToolbarMenuClassName = 'js-lg-toolbar-menu';
 
 export const lgCardAttachmentTemplates = [
-  'hero',
-  'thumbnail',
-  'signin',
-  'animation',
-  'video',
-  'audio',
   'adaptive',
+  'hero',
+  'signin',
+  'thumbnail',
+  'audio',
+  'video',
+  'animation',
 ] as const;
 
 export type LgCardTemplateType = typeof lgCardAttachmentTemplates[number];
@@ -27,7 +27,7 @@ export const cardTemplates: Record<LgCardTemplateType, string> = {
   "body": [
     {
       "type": "TextBlock",
-      "text": "Passengers",
+      "text": "default text",
       "weight": "bolder",
       "isSubtle": false
     },
