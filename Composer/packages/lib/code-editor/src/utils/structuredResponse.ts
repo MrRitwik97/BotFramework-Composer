@@ -56,11 +56,8 @@ const getStructuredResponseByKind = (
     case 'Attachments':
       return getStructuredResponseHelper(value, 'Attachments') as AttachmentsStructuredResponseItem;
     case 'SuggestedActions': {
-      if (Array.isArray(value)) {
-        const responseValue = (value as string[]).map((v) => v.trim());
-        return { kind: 'SuggestedActions', value: responseValue } as SuggestedActionsStructuredResponseItem;
-      }
-      break;
+      const responseValue = Array.isArray(value) ? (value as string[]).map((v) => v.trim()) : [value];
+      return { kind: 'SuggestedActions', value: responseValue } as SuggestedActionsStructuredResponseItem;
     }
     case 'AttachmentLayout':
       if (acceptedAttachmentLayout.includes(value as typeof acceptedAttachmentLayout[number])) {
