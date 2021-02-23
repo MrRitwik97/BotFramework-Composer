@@ -145,7 +145,7 @@ const TextViewItem = React.memo(({ value, onRemove, onFocus, onRenderDisplayText
           {onRenderDisplayText?.() ?? value}
         </Text>
       </Stack>
-      <RemoveIcon className={removeIconClassName} iconProps={{ iconName: 'Trash' }} onClick={remove} />
+      <RemoveIcon className={removeIconClassName} iconProps={{ iconName: 'Trash' }} tabIndex={-1} onClick={remove} />
     </TextViewItemRoot>
   );
 });
