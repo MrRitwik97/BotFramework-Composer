@@ -30,7 +30,7 @@ export const cardTemplates: Record<LgCardTemplateType, string> = {
       "text": "default text",
       "weight": "bolder",
       "isSubtle": false
-    },
+    }
   ]
 }\`\`\``,
   hero: `[HeroCard
