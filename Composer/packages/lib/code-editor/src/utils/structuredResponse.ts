@@ -14,6 +14,7 @@ import {
   PartialStructuredResponse,
   SpeechStructuredResponseItem,
   StructuredResponseItem,
+  structuredResponseKeys,
   SuggestedActionsStructuredResponseItem,
   TextStructuredResponseItem,
 } from '../lg/types';
@@ -156,14 +157,16 @@ export const structuredResponseToString = (structuredResponse: PartialStructured
     }
   };
 
-  const body = keys.reduce((text, kind) => {
-    const value = getValue(kind as StructuredResponseItem['kind']);
+  const body = structuredResponseKeys
+    .filter((k) => keys.includes(k))
+    .reduce((text, kind) => {
+      const value = getValue(kind as StructuredResponseItem['kind']);
 
-    if (value) {
-      text += `\t${kind} = ${value}\n`;
-    }
-    return text;
-  }, '');
+      if (value) {
+        text += `\t${kind} = ${value}\n`;
+      }
+      return text;
+    }, '');
 
   return body ? `[${activityTemplateType}\n${body}]\n`.replace(/\t/gm, defaultIndent) : '';
 };

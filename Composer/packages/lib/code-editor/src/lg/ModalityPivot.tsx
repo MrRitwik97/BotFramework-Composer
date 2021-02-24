@@ -35,7 +35,7 @@ import {
   PartialStructuredResponse,
   AttachmentLayoutStructuredResponseItem,
   InputHintStructuredResponseItem,
-  modalityType,
+  modalityTypes,
   ArrayBasedStructuredResponseItem,
 } from './types';
 
@@ -154,7 +154,7 @@ const renderModalityEditor = ({
 
 const getInitialModalities = (structuredResponse?: PartialStructuredResponse): ModalityType[] => {
   const modalities = Object.keys(structuredResponse || {}).filter((m) =>
-    modalityType.includes(m as ModalityType)
+    modalityTypes.includes(m as ModalityType)
   ) as ModalityType[];
   return modalities.length ? modalities : ['Text'];
 };
@@ -250,7 +250,10 @@ export const ModalityPivot = React.memo((props: Props) => {
 
   const pivotItems = useMemo(
     () =>
-      modalities.map((modality) => items.find(({ key }) => key === modality)).filter(Boolean) as IContextualMenuItem[],
+      modalityTypes
+        .filter((m) => modalities.includes(m))
+        .map((modality) => items.find(({ key }) => key === modality))
+        .filter(Boolean) as IContextualMenuItem[],
     [items, modalities]
   );
   const menuItems = useMemo(() => items.filter(({ key }) => !modalities.includes(key as ModalityType)), [
